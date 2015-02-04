@@ -1,3 +1,6 @@
+import {Test} from './test/test'
+import {nav} from './test/navbar'
+
 export class Welcome{
   constructor(){
     this.heading = 'Welcome to the Aurelia Navigation App!';
@@ -5,11 +8,14 @@ export class Welcome{
     this.lastName = 'Doe';
   }
 
-  get fullName(){
-    return `${this.firstName} ${this.lastName}`;
+  get fullName() {
+    console.log("1")
+    return 1;
   }
 
   welcome(){
+        console.log("2")
+
     alert(`Welcome, ${this.fullName}!`);
   }
 }
