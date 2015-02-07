@@ -1,0 +1,18 @@
+<template>
+  <style>
+    .app {
+      margin: 0 auto;
+      float: none;
+    }
+  </style>
+  <import from='./components/navbar' ></import>
+  <import from='./components/project' as="project-table" ></import>
+
+  <navbar></navbar>
+
+  <div class="row">
+    <div class="app col-md-6">
+      <project-table repeat.for="item of items"></project-table>
+    </div>
+  </div>
+</template>

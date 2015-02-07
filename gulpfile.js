@@ -18,10 +18,12 @@ var protractor = require("gulp-protractor").protractor;
 var webdriver_update = require('gulp-protractor').webdriver_update;
 
 var path = {
-  source:'src/**/*.js',
-  html:'src/**/*.html',
-  style:'styles/**/*.css',
-  output:'dist/',
+  source:'assets/js/**/*.js',
+  html:'assets/templates/**/*.html',
+  style:'assets/styles/**/*.css',
+  output:'.tmp/public',
+  jspm: 'jspm_packages/**/**/*',
+  config: 'config.js',
   doc:'./doc',
   e2eSpecsSrc: 'test/e2e/src/*.js',
   e2eSpecsDist: 'test/e2e/dist/'
@@ -71,6 +73,18 @@ gulp.task('build-html', function () {
   return gulp.src(path.html)
     .pipe(changed(path.output, {extension: '.html'}))
     .pipe(gulp.dest(path.output));
+});
+
+gulp.task('copy-jspm', function () {
+  return gulp.src(path.jspm)
+    .pipe(changed(path.output))
+    .pipe(gulp.dest(path.output + "/jspm_packages"));
+});
+
+gulp.task('copy-config', function () {
+  return gulp.src(path.config)
+      .pipe(changed(path.output))
+      .pipe(gulp.dest(path.output + "/js"));
 });
 
 gulp.task('lint', function() {
@@ -159,7 +173,7 @@ function reportChange(event){
   console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
 }
 
-gulp.task('watch', ['serve'], function() {
+gulp.task('watch', ['copy-jspm', 'copy-config'], function() {
   gulp.watch(path.source, ['build-system', browserSync.reload]).on('change', reportChange);
   gulp.watch(path.html, ['build-html', browserSync.reload]).on('change', reportChange);
   gulp.watch(path.style, browserSync.reload).on('change', reportChange);
