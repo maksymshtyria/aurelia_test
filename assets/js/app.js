@@ -1,4 +1,3 @@
-import {Behavior} from 'github:aurelia/templating@0.8.8';
 
 export class ToDo{
   //static metadata(){
@@ -6,13 +5,23 @@ export class ToDo{
   //      .templateController('repeat')
   //}
 
-  constructor(){
-    this.items = [{
-      id: 1, date: "01"
-    }, {
-      id: 2, date: "02"
-    }, {
-      id: 3, date: "03"
+  constructor(project){
+    this.projects = [{
+      id: 1,
+      title: "First priority",
+      tasks: [{
+        status: "done",
+        title: "create this exaple",
+        date: new Date().toString()
+      }, {
+        status: "in progress",
+        title: "create presentation",
+        date: new Date().toString()
+      }, {
+        status: "new",
+        title: "led presentation",
+        date: new Date().toString()
+      }]
     }];
     console.log(this.items)
   }
