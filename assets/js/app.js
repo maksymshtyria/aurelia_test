@@ -1,3 +1,4 @@
+import {HttpClient} from 'aurelia-http-client';
 
 export class ToDo{
   //static metadata(){
@@ -5,35 +6,11 @@ export class ToDo{
   //      .templateController('repeat')
   //}
 
-  constructor(project){
-    this.projects = [{
-      id: 1,
-      title: "First priority",
-      tasks: [{
-        status: "done",
-        title: "create this exaple",
-        date: new Date().toString()
-      }, {
-        status: "in progress",
-        title: "create presentation",
-        date: new Date().toString()
-      }, {
-        status: "new",
-        title: "led presentation",
-        date: new Date().toString()
-      }]
-    }];
-    console.log(this.items)
-  }
+  static inject() { return [HttpClient]; }
 
-  get fullName() {
-    console.log("1")
-    return 1;
-  }
+  constructor(http){
+    http.get('projects').then(param => {this.projects = JSON.parse(param.response)})
 
-  welcome(){
-        console.log("2")
-
-    alert(`Welcome, ${this.fullName}!`);
+    this.projects = [];
   }
 }
