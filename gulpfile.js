@@ -19,7 +19,7 @@ var webdriver_update = require('gulp-protractor').webdriver_update;
 
 var path = {
   source:'assets/js/**/*.js',
-  html:'assets/templates/**/*.html',
+  html:'assets/js/**/*.html',
   style:'assets/styles/**/*.css',
   output:'.tmp/public',
   jspm: 'jspm_packages/**/**/*',
@@ -66,13 +66,13 @@ gulp.task('build-system', function () {
     .pipe(plumber())
     .pipe(changed(path.output, {extension: '.js'}))
     .pipe(to5(assign({}, compilerOptions, {modules:'system'})))
-    .pipe(gulp.dest(path.output));
+    .pipe(gulp.dest(path.output  + "/js"));
 });
 
 gulp.task('build-html', function () {
   return gulp.src(path.html)
     .pipe(changed(path.output, {extension: '.html'}))
-    .pipe(gulp.dest(path.output));
+    .pipe(gulp.dest(path.output + "/js"));
 });
 
 gulp.task('copy-jspm', function () {

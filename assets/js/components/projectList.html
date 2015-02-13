@@ -1,0 +1,15 @@
+<template>
+    <import from='./item'></import>
+    <import from='./addNewProject' as="add-new-project" ></import>
+
+    <style>
+        .list-group {
+            padding-left: 15px;
+        }
+    </style>
+    <add-new-project></add-new-project>
+
+    <div class="list-group col-md-12">
+        <item repeat.for="project of projects" item.bind="project"></item>
+    </div>
+</template>

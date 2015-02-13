@@ -1,18 +1,22 @@
 <template>
-  <style>
+    <style>
     .app {
       margin: 0 auto;
       float: none;
     }
-  </style>
-  <import from='./components/navbar' ></import>
-  <import from='./components/project' as="project-table" ></import>
+    </style>
 
-  <navbar></navbar>
+    <import from='./components/navbar' ></import>
+    <import from='./components/project' as="project-table" ></import>
+    <import from='./components/projectList' as="project-list" ></import>
 
-  <div class="row">
-    <div class="app col-md-6">
-      <project-table repeat.for="project of projects" project.bind="project"></project-table>
+    <navbar></navbar>
+    <div class="row col-md-3">
+        <project-list projects.bind="projects"></project-list>
     </div>
-  </div>
+    <div class="row col-md-9">
+        <div class="app">
+          <project-table repeat.for="project of projects" project.bind="project"></project-table>
+        </div>
+    </div>
 </template>
