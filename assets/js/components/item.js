@@ -17,6 +17,7 @@ export class Item {
         this.http = http;
         this.className = "list-group-item";
         this.subscribe();
+        console.log(this.item)
     }
 
     select() {

@@ -28,18 +28,18 @@
 
             <table class="table table-striped">
                 <thead>
-                <tr>
-                    <td>Status</td>
-                    <td>Title</td>
-                    <td>Date</td>
-                </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>Title</td>
+                        <td>Date</td>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr repeat.for="task of project.tasks">
-                    <td>${task.status}</td>
-                    <td>${task.title}</td>
-                    <td>${task.date}</td>
-                </tr>
+                    <tr repeat.for="task of project.tasks">
+                        <td>${task.status}</td>
+                        <td>${task.title}</td>
+                        <td>${task.date}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

@@ -66,13 +66,13 @@ gulp.task('build-system', function () {
     .pipe(plumber())
     .pipe(changed(path.output, {extension: '.js'}))
     .pipe(to5(assign({}, compilerOptions, {modules:'system'})))
-    .pipe(gulp.dest(path.output  + "/js"));
+    .pipe(gulp.dest(path.output));
 });
 
 gulp.task('build-html', function () {
   return gulp.src(path.html)
     .pipe(changed(path.output, {extension: '.html'}))
-    .pipe(gulp.dest(path.output + "/js"));
+    .pipe(gulp.dest(path.output));
 });
 
 gulp.task('copy-jspm', function () {
@@ -84,7 +84,7 @@ gulp.task('copy-jspm', function () {
 gulp.task('copy-config', function () {
   return gulp.src(path.config)
       .pipe(changed(path.output))
-      .pipe(gulp.dest(path.output + "/js"));
+      .pipe(gulp.dest(path.output + ""));
 });
 
 gulp.task('lint', function() {
@@ -176,7 +176,6 @@ function reportChange(event){
 gulp.task('watch', ['copy-jspm', 'copy-config'], function() {
   gulp.watch(path.source, ['build-system', browserSync.reload]).on('change', reportChange);
   gulp.watch(path.html, ['build-html', browserSync.reload]).on('change', reportChange);
-  gulp.watch(path.style, browserSync.reload).on('change', reportChange);
 });
 
 gulp.task('prepare-release', function(callback){

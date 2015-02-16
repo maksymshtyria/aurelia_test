@@ -1,22 +1,6 @@
 <template>
-    <style>
-    .app {
-      margin: 0 auto;
-      float: none;
-    }
-    </style>
-
     <import from='./components/navbar' ></import>
-    <import from='./components/project' as="project-table" ></import>
-    <import from='./components/projectList' as="project-list" ></import>
 
     <navbar></navbar>
-    <div class="row col-md-3">
-        <project-list projects.bind="projects"></project-list>
-    </div>
-    <div class="row col-md-9">
-        <div class="app">
-          <project-table repeat.for="project of projects" project.bind="project"></project-table>
-        </div>
-    </div>
+    <router-view></router-view>
 </template>

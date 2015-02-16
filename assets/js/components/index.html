@@ -1,0 +1,21 @@
+<template>
+    <import from='./project' as="project-table" ></import>
+    <import from='./projectList' as="project-list" ></import>
+
+    <style>
+        .app {
+            margin: 0 auto;
+            float: none;
+        }
+    </style>
+
+    <div class="row col-md-3">
+        <project-list projects.bind="projects"></project-list>
+    </div>
+    <div class="row col-md-9">
+        <div class="app">
+            <project-table repeat.for="project of projects" project.bind="project"></project-table>
+        </div>
+    </div>
+</template>
+

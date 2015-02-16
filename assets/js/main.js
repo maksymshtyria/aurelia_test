@@ -1,15 +1,16 @@
-export class Test{
-    //static metadata(){
-    //  return Behavior
-    //      .templateController('repeat')
-    //}
+import {LogManager} from 'aurelia-framework';
+import {ConsoleAppender} from 'github:aurelia/logging-console@0.2.2';
 
-    //static metadata(){ return Metadata.transient(); }
-    static inject() { return [HttpClient, Router]; }
+LogManager.addAppender(new ConsoleAppender());
+LogManager.setLevel(LogManager.levels.debug);
 
-    constructor(http, router){
-        console.log("test")
+export function configure(aurelia) {
+    aurelia.use
+        .defaultBindingLanguage()
+        .defaultResources()
+        .router()
+        .eventAggregator()
+        //.plugin('./js');
 
-    }
+    aurelia.start().then(a => a.setRoot('app', document.body));
 }
-
