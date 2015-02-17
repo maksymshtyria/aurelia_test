@@ -7,17 +7,17 @@ export class Project {
     //    //return Behavior.useShadowDOM();
     //    return Behavior.withProperty('selected', 'valueChanged', 'show');
     //}
+    static metadata(){ return Behavior.withProperty('project')}
 
     static inject() { return [HttpClient, EventAggregator]; }
     constructor(http, eventAggregator){
         this.http = http;
-        this.selected = true;
+        this.show = true;
         this.newTask = {};
-        //this.project = {tasks: []};
         this.eventAggregator = eventAggregator
-        //this.eventAggregator.subscribe('select:item', data => {
-        //    this.selected = this.id === data.id;
-        //});
+        this.eventAggregator.subscribe('select:item', data => {
+            this.show = this.id === data.id;
+        });
     }
 
     addTask () {
