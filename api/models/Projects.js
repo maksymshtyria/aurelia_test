@@ -1,7 +1,10 @@
 module.exports = {
     attributes: {
         title: "string",
-        tasks: "array",
+        tasks: {
+            type: "array",
+            defaultsTo: []
+        },
         createdAt: {
             type: 'datetime',
             defaultsTo: function (){ return new Date(); }
@@ -10,4 +13,4 @@ module.exports = {
 
     adapter: 'someMongodbServer',
     tableName: 'Projects'
-}
+};

@@ -22,7 +22,6 @@ export class Item {
 
     select() {
         this.eventAggregator.publish('select:item', {id: this.item.id});
-
         return this;
     }
 
@@ -30,8 +29,10 @@ export class Item {
         this.eventAggregator.subscribe('select:item', data => {
             if (this.item.id === data.id) {
                 this.className += " active";
+                this.item.show = true;
             } else {
                 this.className = "list-group-item";
+                this.item.show = false;
             }
         });
     }

@@ -7,28 +7,32 @@ export class Project {
     //    //return Behavior.useShadowDOM();
     //    return Behavior.withProperty('selected', 'valueChanged', 'show');
     //}
-    static metadata(){ return Behavior.withProperty('project')}
+    static metadata(){ return Behavior.withProperty('project');}
 
-    static inject() { return [HttpClient, EventAggregator]; }
-    constructor(http, eventAggregator){
+    static inject() { return [HttpClient, EventAggregator, Element]; }
+    constructor(http, eventAggregator, element){
         this.http = http;
+        this.element = element;
         this.show = true;
-        this.newTask = {};
-        this.eventAggregator = eventAggregator
-        this.eventAggregator.subscribe('select:item', data => {
-            this.show = this.id === data.id;
-        });
+        this.newTask = this.getDefaultTask();
+        this.eventAggregator = eventAggregator;
+        this.eventAggregator.subscribe('showAll', data => this.isSaving = true);
+        this.eventAggregator.subscribe('select:item', data => this.isSaving = this.project.id === data.id);
+    }
+
+    getDefaultTask () {
+        return {
+            status: "off",
+            title:  "",
+            date:   new Date().toString()
+        }
     }
 
     addTask () {
         console.log(this.status);
         console.log(this.title);
-        this.http.put('projects/' + this.project.id, this.newTask)
-        this.project.tasks.push({
-            status: this.status,
-            title: this.title,
-            date: new Date().toString()
-        })
-
+        this.http.put('projects/' + this.project.id, this.newTask);
+        this.project.tasks.push(Object.create(this.newTask));
+        this.newTask = this.getDefaultTask()
     }
 }

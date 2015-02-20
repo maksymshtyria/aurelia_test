@@ -1,5 +1,6 @@
 <template>
     <import from='./item'></import>
+    <import from='./showAllItem' as="show-all-item"></import>
     <import from='./addNewProject' as="add-new-project" ></import>
 
     <style>
@@ -10,6 +11,7 @@
     <add-new-project></add-new-project>
 
     <div class="list-group col-md-12">
+        <show-all-item projects.bind="projects"></show-all-item>
         <item repeat.for="project of projects" item.bind="project"></item>
     </div>
 </template>

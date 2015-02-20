@@ -10,18 +10,18 @@ module.exports = {
         });
     },
 
-    create: function (req, res) {
-        Projects.create(req.body, req.session.passport.user.id)
-            .done(function (err, event) {
-                if (err) {
-                    res.send(err);
-                } else {
-                    res.socket.emit('new_appt', event);
-                    res.send(200);
-                }
-            });
-
-    },
+    //create: function (req, res) {
+    //    Projects.create(req.body)
+    //        .done(function (err, event) {
+    //            if (err) {
+    //                res.send(err);
+    //            } else {
+    //                res.socket.emit('new projects', event);
+    //                res.send(200);
+    //            }
+    //        });
+    //
+    //},
 
     update: function (req, res) {
         Projects.findOne(req.param("id")).exec(function (err, project) {
