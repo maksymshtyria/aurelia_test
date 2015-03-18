@@ -7,7 +7,8 @@ export class Project {
     //    //return Behavior.useShadowDOM();
     //    return Behavior.withProperty('selected', 'valueChanged', 'show');
     //}
-    static metadata(){ return Behavior.withProperty('project')}
+    static metadata(){ return Behavior.withProperty('project')
+        .withProperty('selected', 'valueChanged', 'show');}
 
     static inject() { return [HttpClient, EventAggregator]; }
     constructor(http, eventAggregator){
@@ -16,8 +17,12 @@ export class Project {
         this.newTask = {};
         this.eventAggregator = eventAggregator
         this.eventAggregator.subscribe('select:item', data => {
-            this.show = this.id === data.id;
+            this.selected = this.id === data.id;
         });
+    }
+
+    show () {
+        console.log(arguments);
     }
 
     addTask () {
