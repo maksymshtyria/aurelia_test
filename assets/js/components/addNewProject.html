@@ -6,7 +6,7 @@
         }
     </style>
     <div class="group col-md-12">
-        <input type="text" class="form-control" placeholder="Project name">
-        <button type="submit" class="btn btn-primary pull-right">Add project</button>
+        <input type="text" class="form-control" placeholder="Project name" value.bind="newProjectName">
+        <button type="submit" class="btn btn-primary pull-right" click.trigger="addNewProject()">Add project</button>
     </div>
 </template>
