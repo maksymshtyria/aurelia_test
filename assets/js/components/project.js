@@ -4,8 +4,7 @@ import {EventAggregator} from 'aurelia-event-aggregator';
 
 export class Project {
     //static metadata(){
-    //    //return Behavior.useShadowDOM();
-    //    return Behavior.withProperty('selected', 'valueChanged', 'show');
+    //    return Behavior.useShadowDOM();
     //}
 
     static metadata(){ return Behavior.withProperty('project');}

@@ -9,8 +9,7 @@ export function configure(aurelia) {
         .defaultBindingLanguage()
         .defaultResources()
         .router()
-        .eventAggregator()
-        //.plugin('./js');
-
+        .eventAggregator();
+        
     aurelia.start().then(a => a.setRoot('app', document.body));
 }
